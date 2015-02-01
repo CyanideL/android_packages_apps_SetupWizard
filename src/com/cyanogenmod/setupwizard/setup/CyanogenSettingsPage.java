@@ -95,8 +95,8 @@ public class CyanogenSettingsPage extends SetupPage {
         final int defaultBrightness = context.getResources().getInteger(
                 com.android.internal.R.integer.config_buttonBrightnessSettingDefault);
 
-        Settings.Secure.putInt(context.getContentResolver(),
-                Settings.Secure.DEV_FORCE_SHOW_NAVBAR, enabled ? 1 : 0);
+        Settings.System.putInt(context.getContentResolver(),
+                Settings.System.NAVBAR_FORCE_ENABLE, enabled ? 1 : 0);
         KeyDisabler.setActive(enabled);
 
         /* Save/restore button timeouts to disable them in softkey mode */
@@ -354,8 +354,8 @@ public class CyanogenSettingsPage extends SetupPage {
         }
 
         private void updateDisableNavkeysOption() {
-            boolean enabled = Settings.Secure.getInt(getActivity().getContentResolver(),
-                    Settings.Secure.DEV_FORCE_SHOW_NAVBAR, 0) != 0;
+            boolean enabled = Settings.System.getInt(getActivity().getContentResolver(),
+                    Settings.System.NAVBAR_FORCE_ENABLE, 0) != 0;
             boolean checked = mPage.getData().containsKey(KEY_ENABLE_NAV_KEYS) ?
                     mPage.getData().getBoolean(KEY_ENABLE_NAV_KEYS) :
                     enabled;
